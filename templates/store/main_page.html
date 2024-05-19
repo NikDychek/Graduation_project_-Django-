@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+<h1>APPLE AGENT<br /></h1>
+<p>Это современный магазин и сервис техники Apple в Минске. Мы релиазиуем исключительно оригинальную технику Apple. </p>
+<p>Гарантия 12 месяцев. Доставка по Минску 0 BYN</p>    
+<section class="tiles">
+    {% for item in page_obj %}
+    <article class="style{{ range|random }}">
+        <span class="image">
+        {% if item.image %}
+            <img src="{{ item.image.url }}" alt="" style="width: 200px; height: 200px;" />
+        {% else %}
+            <img src="{% static "images/pic01.jpg" %}" alt="" />
+        {% endif %}
+        </span>
+        <a href="{% url 'store:item_details' item.slug %}">
+            <div class="tag">
+                <object> 
+                    {% for tag in item.tags.all %}
+                        <a href="{% url 'store:tag_details' tag.slug %}" style="color: black">{{ tag }}</a>
+                        {% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                </object><br />
+            </div>
+            <h2>{{ item.title }}</h2>
+            <div class="content">
+                <p>{{ item.description|truncatechars:150 }}</p>
+            </div>
+        </a>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %} 
