@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Вы успешно вышли из системы</h1>
-  <p>Вернуться на <a href="{% url 'users:login' %}">страницу входа</a>.</p>
+  <h1>Вы успешно вышли из системы.</h1>
+  <form method="post" action="{% url 'users:logout' %}">
+    {% csrf_token %}
+    <button type="submit">Вернуться на главную</button>
+  </form>
 {% endblock %}

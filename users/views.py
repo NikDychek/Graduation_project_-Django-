@@ -1,8 +1,9 @@
 import asyncio
 
 import telegram
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
@@ -10,6 +11,14 @@ from Web_Store.settings import TELEGRAM_CHAT_ID, TELEGRAM_TOKEN
 from checkout.models import Order
 from .forms import CreationForm, FeedbackForm
 from .models import Feedback
+
+
+def user_logout(request):
+    """
+    Представление для выхода пользователя из системы.
+    """
+    logout(request)
+    return redirect(reverse_lazy('store:home'))
 
 
 @login_required
