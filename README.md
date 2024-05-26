@@ -2,9 +2,9 @@
 
 1. Клонируйте репозиторий
 ```
-https://github.com
+https://github.com/NikDychek/Graduation_project_Django 
 
-cd OnlineStore
+cd Web_Store
 ```
 Если вы не используете Git, то вы можете просто скачать исходный код репозитория в ZIP-архиве и распаковать его на свой компьютер.
 
